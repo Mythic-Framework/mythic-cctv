@@ -4,6 +4,7 @@ function RetrieveComponents()
 	Fetch = exports["mythic-base"]:FetchComponent("Fetch")
 	Chat = exports["mythic-base"]:FetchComponent("Chat")
 	CCTV = exports["mythic-base"]:FetchComponent("CCTV")
+	Version = exports["mythic-base"]:FetchComponent("Version")
 	RegisterChatCommands()
 end
 
@@ -13,6 +14,7 @@ AddEventHandler("Core:Shared:Ready", function()
 		"Fetch",
 		"Chat",
 		"CCTV",
+		"Version",
 	}, function(error)
 		if #error > 0 then
 			return
@@ -57,6 +59,8 @@ AddEventHandler("Core:Shared:Ready", function()
 		Callbacks:RegisterServerCallback("CCTV:ViewGroup", function(source, data, cb)
 			CCTV:ViewGroup(source, data)
 		end)
+
+		Version:Check('Mythic-Framework/Mythic-VersionCheckers', GetCurrentResourceName())
 	end)
 end)
 
